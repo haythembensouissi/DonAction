@@ -31,7 +31,7 @@ const {email,password}=req.body
 UserModel.findOne({ email: email })
 .then(async (user) => {
   if (!user) {
-    // Handle case when user is not found
+  
     return res.status(404).json({ message: 'User not found' });
   }
 
