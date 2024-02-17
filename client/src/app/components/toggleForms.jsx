@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
 
 const ToggleForms = () => {
+  const[login,setlogin]=useState(true)
   const handleSignUp = () => {
     console.log('Show Sign Up form');
   };
@@ -10,20 +13,23 @@ const ToggleForms = () => {
   };
 
   return (
-    <div className="toggle-container">
-      <div className="toggle">
-        <div className="toggle-panel toggle-left">
-          <h1>Welcome Back !</h1>
-          <p>Enter your personal details to use all of site features</p>
-          <button onClick={handleSignIn}>Sign In</button>
-        </div>
-        <div className="toggle-panel toggle-right">
-          <h1>Welcome, Friend!</h1>
-          <p>Enter your personal details to use all of site features</p>
-          <button onClick={handleSignUp}>Sign Up</button>
-        </div>
-      </div>
-    </div>
+    <div>
+    {login?<SignInForm/>:<SignUpForm/>}
+ <div className="toggle-container">
+ <div className="toggle">
+   <div className="toggle-panel toggle-left">
+   <h1>Welcome Back !</h1>
+   <p>Enter your personal details to use all of site features</p>
+   <button onClick={()=>setlogin(!login)}>Sign In</button>
+   </div>
+   <div className="toggle-panel toggle-right">
+     <h1>Welcome, Friend!</h1>
+     <p>Enter your personal details to use all of site features</p>
+     <button onClick={()=>setlogin(!login)}>{login?<h2>sign up</h2>:<h2>sign in</h2>}</button>
+   </div>
+ </div>
+</div>
+ </div>
   );
 };
 
