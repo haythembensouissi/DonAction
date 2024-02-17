@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState } from 'react';
 import SignUpForm from './components/SignUpForm';
@@ -9,7 +10,6 @@ const Page = () => {
   const handleSignUp = () => {
     console.log('Handling sign up...');
   };
-
   const handleSignIn = () => {
     console.log('Handling sign in...');
   };
