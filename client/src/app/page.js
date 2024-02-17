@@ -1,10 +1,31 @@
-"use client"
-import Image from "next/image";
-export default function Home() {
+
+"use client";
+import React, { useState } from 'react';
+import SignUpForm from './components/SignUpForm';
+import SignInForm from './components/SignInForm';
+import ToggleForms from './components/toggleForms';
+import styles from './components/styles.css';
+
+const Page = () => {
+  const handleSignUp = () => {
+    console.log('Handling sign up...');
+  };
+  const handleSignIn = () => {
+    console.log('Handling sign in...');
+  };
 
   return (
-    <div>
-   <h1>DonAction</h1>
-   </div>
+    <div className={styles.container}>
+      {/* Render the Sign Up form */}
+      <SignUpForm />
+
+      {/* Render the Sign In form */}
+      <SignInForm />
+
+      {/* Render the ToggleForms component */}
+      <ToggleForms handleSignUp={handleSignUp} handleSignIn={handleSignIn} />
+    </div>
   );
-}
+};
+
+export default Page;
