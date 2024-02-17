@@ -2,7 +2,7 @@ import React from 'react';
 
 const SignUpForm = () => {
   return (
-    <div className="form-container sign-up">
+    <div className="form-container sign-in">
       <form>
         <h1>Create Account</h1>
         <div className="social-icons">
