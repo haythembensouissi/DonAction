@@ -1,26 +1,38 @@
-
 "use client";
 import React, { useState } from 'react';
 import SignUpForm from './components/SignUpForm';
 import SignInForm from './components/SignInForm';
 import ToggleForms from './components/toggleForms';
-import  './components/styles.css';
-
+import './components/styles.css';
+import { useCookies } from 'react-cookie';
+import { useSession, SessionProvider } from 'next-auth/react'; // Import useSession and SessionProvider
+import {Auth} from "./components/toggleForms"
+import Home from './Home';
 const Page = () => {
-  const handleSignUp = () => {
-    console.log('Handling sign up...');
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const signout = () => {
+    removeCookie("email");
+    removeCookie("token");
   };
- 
-  const handleSignIn = () => {
-    console.log('Handling sign in...');
-  };
+
+  const token = cookies.token;
+  const email = cookies.email;
 
   return (
-    <div className="container">
-      
-      <ToggleForms handleSignUp={handleSignUp} handleSignIn={handleSignIn} />
+    
+    <div>
+    
+      {token ? (
+       
+        <div>
+          Welcome {email}
+          <button onClick={() => signout()}>Sign out</button>
+        </div>
+      ) : (
+       <Home/>
+      )}
     </div>
   );
 };
 
-export default Page;
+export default Page
