@@ -1,6 +1,7 @@
 import { useSession, signIn, signOut, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
 import {Image} from "next/image"
+import "./components/styles.css"
 export default function Home() {
   return (
     <SessionProvider>
@@ -23,7 +24,7 @@ function Content() {
       ) : (
         <div>
           
-          <div className="container">
+          <div className="cont">
           <ToggleForms/>
           </div>
          

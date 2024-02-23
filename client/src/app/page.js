@@ -1,13 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import SignUpForm from './components/SignUpForm';
-import SignInForm from './components/SignInForm';
-import ToggleForms from './components/toggleForms';
-import './components/styles.css';
+import './globals.css'
 import { useCookies } from 'react-cookie';
 import { useSession, SessionProvider } from 'next-auth/react'; // Import useSession and SessionProvider
 import {Auth} from "./components/toggleForms"
 import Home from './Home';
+import Navbar from './components/Navbar';
+import News from './news';
+import newsitems from './components/newsitems';
 const Page = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const signout = () => {
@@ -23,10 +22,11 @@ const Page = () => {
     <div>
     
       {token ? (
-       
         <div>
-          Welcome {email}
-          <button onClick={() => signout()}>Sign out</button>
+        Welcome {email}
+        <button onClick={() => signout()}>Sign out</button>
+         <Navbar />
+   
         </div>
       ) : (
        <Home/>
