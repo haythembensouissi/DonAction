@@ -17,8 +17,8 @@ const  register=async (req,res)=>{
             phonenumber:req.body.phonenumber
     })
     user.save().then((results)=>{
-        return res.json(results)
-        jwt.sign({email},"secret",{expiresIn:"24hr"})
+      const token=jwt.sign({email},"secret",{expiresIn:"24hr"})
+        return res.json({results,token})
     }).catch(e=>console.log(e))
     }
 catch(e){
