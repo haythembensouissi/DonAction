@@ -1,7 +1,8 @@
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
-import bootsrapcomponent from './bootsrapcomponent';
-
+import bootsrapcomponent from './Bootsrapcomponent';
+import Link from 'next/link';
+import Donate from "./Donate"
 const Navbar = () => {
   return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary "data-bs-theme="dark">
@@ -28,7 +29,7 @@ const Navbar = () => {
                 <a className="nav-link" href="">News</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">Donnate</a>
+               <a className='nav-link' href='/Donate'>Donate</a>
               </li>
             </ul>
             <form className="d-flex" role="search">
