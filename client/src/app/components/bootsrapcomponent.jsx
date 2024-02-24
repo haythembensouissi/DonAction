@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react'
 
-const bootsrapcomponent = () => {
+const Bootsrapcomponent = () => {
 
     useEffect ( ()=>{
         require ('bootstrap/dist/js/bootstrap.bundle.min.js')
@@ -10,4 +10,4 @@ const bootsrapcomponent = () => {
   return null;
 }
 
-export default bootsrapcomponent
+export default Bootsrapcomponent
