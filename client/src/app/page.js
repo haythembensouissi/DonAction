@@ -23,10 +23,8 @@ const Page = () => {
     
       {token ? (
         <div>
-        Welcome {email}
-        <button onClick={() => signout()}>Sign out</button>
          <Navbar />
-   
+        <News/>
         </div>
       ) : (
        <Home/>
