@@ -1,7 +1,7 @@
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
-import bootsrapcomponent from './bootsrapcomponent';
-
+import bootsrapcomponent from './Bootsrapcomponent';
+import Link from 'next/link';
 const Navbar = () => {
   return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary "data-bs-theme="dark">
@@ -13,22 +13,20 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                <a className="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">Sign</a>
+              <Link className='nav-link' href={"/Blogging"}>Blogging</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">Contact</a>
+                <Link className='nav-link' href={"/Contact"}>Contact</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="">About</a>
+              <Link className='nav-link' href={"/About"}>About</Link>
               </li>
+             
               <li className="nav-item">
-                <a className="nav-link" href="">News</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">Donnate</a>
+              <Link className='nav-link' href={"/Donate"}>Donate</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">

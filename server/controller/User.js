@@ -8,6 +8,7 @@ const  register=async (req,res)=>{
         const password=req.body.password
         const salt=bcrypt.genSaltSync(10)
         const hashedpwd=bcrypt.hashSync(password,salt)
+        console.log(req.body)
     const user=new UserModel({
         _id:new mongoose.Types.ObjectId(),
         firstname:req.body.firstname,
@@ -15,6 +16,8 @@ const  register=async (req,res)=>{
             email:email,  
             password:hashedpwd,
             phonenumber:req.body.phonenumber
+            
+
     })
     user.save().then((results)=>{
       const token=jwt.sign({email},"secret",{expiresIn:"24hr"})

@@ -13,7 +13,7 @@ function Content() {
   const { data: session } = useSession();
 
   return (
-    <>
+    <div>
       {session ? (
         <div>
           Signed in as {session.user.name} <br />
@@ -23,12 +23,12 @@ function Content() {
       ) : (
         <div>
           
-          <div className="container">
+          <div className="cont">
           <ToggleForms/>
           </div>
          
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -26,7 +26,7 @@ const Page = () => {
        
         <div>
          <Navbar />
-    <News/>
+   <News/>
           Welcome {email}
           <button onClick={() => signout()}>Sign out</button>
         </div>
