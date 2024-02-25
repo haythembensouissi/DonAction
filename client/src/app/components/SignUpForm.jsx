@@ -31,6 +31,7 @@ const SignUpForm = () => {
       console.log(data)
       setCookie("token",data.token)
       setCookie("email",data.results.email)
+      
     }
      
    

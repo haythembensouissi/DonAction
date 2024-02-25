@@ -6,7 +6,7 @@ import { useSession, SessionProvider } from 'next-auth/react'; // Import useSess
 import {Auth} from "./components/toggleForms"
 import Home from './Home';
 import Navbar from './components/Navbar';
-import News from './news';
+import News from '../../pages/news';
 import newsitems from './components/newsitems';
 const Page = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
@@ -20,21 +20,14 @@ const Page = () => {
 
   return (
     
-    <div>
+
     
-      {token ? (
-       
+     
+
         <div>
-         <Navbar />
-   <News/>
-          Welcome {email}
-          <button onClick={() => signout()}>Sign out</button>
-        </div>
-      ) : (
-       <Home/>
-      )}
+    <Home/>
     </div>
-  );
+  )
 };
 
 export default Page
