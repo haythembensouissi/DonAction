@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NewsItem from './components/newsitems';
-
+import NewsItem from '../src/app/components/newsitems';
+import Navbar from '../src/app/components/Navbar';
+import { useSession } from 'next-auth/react';
 const News = () => {
   const [news, setNews] = useState([]);
 
@@ -27,6 +28,7 @@ const News = () => {
 
   return (
     <div>
+    <Navbar/>
       <h2 className='text-center'>Latest <span className="badge text-bg-danger">News</span></h2>
       {news.map((newsItem, index) => (
         <NewsItem

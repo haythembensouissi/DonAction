@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
@@ -12,6 +13,7 @@ const ToggleForms = () => {
   const viewLogin = (status) => {
     setLogin(status);
     setIsAnimating(prev => !prev);
+    
   }
 
   const handleGoogleSignIn = () => {
