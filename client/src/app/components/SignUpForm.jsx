@@ -60,12 +60,9 @@ const SignUpForm = () => {
     }
   };
   return (
-    <div className="form-container sign-in" style={{marginTop:"25%"}}>
+    <div className="form-container sign-in" style={{marginTop:"31%"}}>
       <form>
         <h1>Create Account</h1>
-        <div className="social-icons">
-          {/* Social icons can be placed here */}
-        </div>
         <span>or use your email for registration</span>
         <input onChange={(e)=>setfirstname(e.target.value)} value={firstname} type="text" placeholder="F-Name" />
         <input onChange={(e)=>setlastname(e.target.value)} value={lastname} type="text" placeholder="L-Name" />
