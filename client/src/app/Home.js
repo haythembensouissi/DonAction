@@ -2,7 +2,7 @@ import { useSession, signIn, signOut, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
 import {Image} from "next/image"
 import Navbar from "./components/Navbar";
-import News from "./news";
+import News from "../../pages/news";
 import NewsItem from "./components/newsitems";
 export default function Home() {
   return (

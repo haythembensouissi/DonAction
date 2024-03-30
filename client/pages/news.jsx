@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NewsItem from './components/newsitems';
+import NewsItem from '../src/app/components/newsitems';
 
 const News = () => {
   const [news, setNews] = useState([]);
