@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
-import bootsrapcomponent from './Bootsrapcomponent';
+import Bootsrapcomponent from './bootsrapcomponent';
 import Link from 'next/link';
 const Navbar = () => {
   return (

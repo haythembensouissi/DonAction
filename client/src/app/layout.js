@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Bootsrapcomponent from './components/Bootsrapcomponent';
+import Bootsrapcomponent from './components/bootsrapcomponent';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
