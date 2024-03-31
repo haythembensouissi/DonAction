@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 import {useCookies} from 'react-cookie'
 import { useRouter } from 'next/router';
 import { Image, Transformation } from 'cloudinary-react';
-
+import Upload from './Uploadfile';
+import './styles.css'
+import PasswordStrengthMeter from './ProgressBar';
 const SignUpForm = () => {
   const cloudname="dheoor1qw"
   const[error,setError]=useState(null)
@@ -16,7 +18,47 @@ const SignUpForm = () => {
   const[confirmpassword,setconfirmpassword]=useState("")
   const [cookies,setCookie,removeCookie]=useCookies(null)
   const [image, setImage] = useState(null);
+  const getPasswordStrength = (password) => {
+    // Define your password strength criteria
+    const strengthCriteria = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      digit: /[0-9]/.test(password),
+      specialChar: /[!@#$%^&*]/.test(password),
+    };
+
+    // Count the number of fulfilled criteria
+    const fulfilledCriteriaCount = Object.values(strengthCriteria).filter(Boolean).length;
+
+    // Calculate strength based on the number of fulfilled criteria
+    if (fulfilledCriteriaCount === 5) {
+      return 'Strong';
+    } else if (fulfilledCriteriaCount >= 3) {
+      return 'Medium';
+    } else {
+      return 'Weak';
+    }
+  };
+
+  const calculateProgress = (password) => {
+    const strengthCriteria = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      digit: /[0-9]/.test(password),
+      specialChar: /[!@#$%^&*]/.test(password),
+    };
+
+      const fulfilledCriteriaCount = Object.values(strengthCriteria).filter(Boolean).length;
+
+    const progress = (fulfilledCriteriaCount / 5) * 100;
+    console.log("Progress:", progress);
   
+    return progress;
+  };
+
+
   const handlesubmit= async (e)=>{
     e.preventDefault();
     if(password!=confirmpassword){
@@ -69,12 +111,14 @@ const SignUpForm = () => {
         <input onChange={(e)=>setemail(e.target.value)} value={email} type="email" placeholder="Email" />
         <input onChange={(e)=>setphonenumber(e.target.value)} value={phonenumber} type="text" placeholder="Number" />
         <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" placeholder="Password" />
-        <input onChange={(e)=>setconfirmpassword(e.target.value) } value={confirmpassword} type="password" placeholder="Confirm Password" />
-      
-        <button onClick={(e)=>handlesubmit(e)} >Sign Up</button>
+        <input  onChange={(e)=>setconfirmpassword(e.target.value) } value={confirmpassword} type="password" placeholder="Confirm Password" />
+        <PasswordStrengthMeter password={password}/>
+  
+
         {error&&<p >{error}</p>}
 
-      </form>
+        </form>
+        <button style={{marginTop:"250px",marginLeft:"100px"}} className='signupbutton' onClick={(e)=>handlesubmit(e)} >Sign Up</button>
     </div>
   );
 };

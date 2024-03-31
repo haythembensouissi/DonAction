@@ -8,7 +8,6 @@ const SignInForm = () => {
   const[error,seterror]=useState(null)
   const [cookies,setCookie,removeCookie]=useCookies(null)
   const [isAnimating, setIsAnimating] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsAnimating(true); // Start animation
@@ -53,9 +52,9 @@ const SignInForm = () => {
         <input onChange={(e)=>setemail(e.target.value)} value={email} type="email" placeholder="Email" />
         <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" placeholder="Password" />
         <a href="#">Forget Your Password?</a>
-        <button onClick={(e)=>handleSubmit(e)}>Sign In</button>
         {error&&<p>{error}</p>}
-      </form>
+        </form>
+        <button onClick={(e)=>handleSubmit(e)}>Sign In</button>
     </motion.div>
   );
 };
