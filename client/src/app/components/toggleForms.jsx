@@ -21,7 +21,7 @@ const ToggleForms = () => {
   }
 
   return (
-    <div>
+    <div style={{height:"600px"}}>
       {login ? (
         <motion.div
           initial={{ x: 0 }}
