@@ -53,8 +53,8 @@ const SignInForm = () => {
         <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" placeholder="Password" />
         <a href="#">Forget Your Password?</a>
         {error&&<p>{error}</p>}
-        </form>
         <button onClick={(e)=>handleSubmit(e)}>Sign In</button>
+        </form>
     </motion.div>
   );
 };
