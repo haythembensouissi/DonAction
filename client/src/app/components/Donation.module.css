@@ -1,0 +1,85 @@
+/* components/PaymentForm.module.css */
+
+.modal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form {
+  width: 400px;
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.payment--options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.payment--options button {
+  background: none;
+  border: none;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.separator hr.line {
+  flex-grow: 1;
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.credit-card-info--form {
+  margin-bottom: 20px;
+}
+
+.input_container {
+  margin-bottom: 10px;
+}
+
+.input_label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input_field {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.split {
+  display: flex;
+}
+
+.split input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+.purchase--btn {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.purchase--btn:hover {
+  background-color: #0056b3;
+}
