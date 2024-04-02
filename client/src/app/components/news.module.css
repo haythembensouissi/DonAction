@@ -1,0 +1,19 @@
+.card {
+    max-width: 345px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+  

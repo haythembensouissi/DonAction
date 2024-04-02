@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
-import bootsrapcomponent from './Bootsrapcomponent';
+import Bootsrapcomponent from './Bootsrapcomponent';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { useCookies } from 'react-cookie';
@@ -38,6 +38,9 @@ let email=cookies.email
               </li>
               <li className="nav-item">
               <Link className='nav-link' href={"/Donate"}>Donate</Link>
+              </li>
+              <li className="nav-item">
+              <Link className='nav-link' href={"/Profile"}>Profile</Link>
               </li>
               {props.email?<p style={{color:"white"}}>welcome {props.email}</p>:null}
               {props.image?<img src={props.image} height={50} width={50} style={{borderRadius:"50px"}}/>:null}
