@@ -5,6 +5,7 @@ import SignUpForm from './SignUpForm';
 import "./styles.css"
 import {motion} from "framer-motion"
 import GoogleIcon from "@mui/icons-material/Google"
+import FacebookIcon from "@mui/icons-material/Facebook"
 import { useSession, SessionProvider, signIn } from 'next-auth/react';
 const ToggleForms = () => {
   const [login, setLogin] = useState(true);
@@ -63,9 +64,12 @@ const ToggleForms = () => {
             )}
             <button onClick={() => viewLogin(!login)}>{login ? <h2>Sign up</h2> : <h2>Sign in</h2>}</button>
             <h6>or sign in with </h6>
+            <div>
             <button onClick={async()=>await signIn("google")}>
               <GoogleIcon/>
             </button> {/* Add Google sign-in button */}
+            <button onClick={async()=>await signIn("facebook",{redirect:true,callbackUrl:"http://localhost:3000"})}><FacebookIcon/></button>
+            </div>
           </motion.div>
           <div className="toggle-panel toggle-left">
             <button onClick={() => viewLogin(!login)}>Sign In</button>
