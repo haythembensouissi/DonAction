@@ -5,11 +5,13 @@ const db=require("./db")
 const cors=require("cors")
 const userRouter=require("./routers/User")
 const Donationrouter=require("./routers/Donation")
+const Blogrouter = require("./routers/Blog")
 app.use(cors())
 app.use(express.json())
 const port=process.env.port;
 app.use(userRouter)
 app.use(Donationrouter)
+app.use(Blogrouter)
 app.get("/",()=>{
     console.log("hello world")
 })
