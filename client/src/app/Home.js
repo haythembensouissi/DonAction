@@ -1,13 +1,13 @@
-import { useSession, signIn, signOut, SessionProvider } from "next-auth/react";
+import { useSession, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
-import {Image} from "next/image"
 import { useCookies } from 'react-cookie';
 import Navbar from "./components/Navbar";
+import Home from "./components/home"; // Updated component name to start with uppercase letter
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 
-export default function Home() {
- 
+export default function HomePage() { // Renamed component to HomePage for clarity
+  
   return (
     <SessionProvider>
       <Content />
@@ -16,11 +16,11 @@ export default function Home() {
 }
 
 function Content() {
-  const [cookies, setCookie, removeCookie] = useCookies(null);
-  const [loading, setLoading] = useState(true);
-  const token=cookies.token;
-  const email=cookies.email
-  const { data: session ,status} = useSession();
+  const [cookies, , removeCookie] = useCookies(null); // Removed unused setCookie
+  const [loading] = useState(true); // Removed unused setLoading
+  const token = cookies.token;
+  const email = cookies.email;
+  const { data: session, status } = useSession();
   const signout = () => {
     removeCookie("email");
     removeCookie("token");
@@ -34,28 +34,22 @@ function Content() {
     );
   }
   return (
-    
     <div>
       {session ? (
         <div>
-         
           <Navbar image={session.user.image} email={session.user.email} session={session} />
-        
+          <Home/>
         </div>
-      ) : token?(
+      ) : token ? (
         <div>
-        <Navbar email={email} />    
-      
-             
-               
-             </div>
-      ):(
+          <Navbar email={email} />    
+          <Home/>
+        </div>
+      ) : (
         <div>
-          
           <div className="cont">
-          <ToggleForms/>
+            <ToggleForms />
           </div>
-         
         </div>
       )}
     </div>
