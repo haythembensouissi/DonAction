@@ -1,13 +1,10 @@
-import { useSession, signIn, signOut, SessionProvider } from "next-auth/react";
+import { useSession, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
 import {Image} from "next/image"
-import { useCookies } from 'react-cookie';
 import Navbar from "./components/Navbar";
-import { useState } from "react";
-import { ClipLoader } from "react-spinners";
-
+import News from "../../pages/news";
+import NewsItem from "./components/newsitems";
 export default function Home() {
- 
   return (
     <SessionProvider>
       <Content />
@@ -16,11 +13,11 @@ export default function Home() {
 }
 
 function Content() {
-  const [cookies, setCookie, removeCookie] = useCookies(null);
-  const [loading, setLoading] = useState(true);
-  const token=cookies.token;
-  const email=cookies.email
-  const { data: session ,status} = useSession();
+  const [cookies, , removeCookie] = useCookies(null); // Removed unused setCookie
+  const [loading] = useState(true); // Removed unused setLoading
+  const token = cookies.token;
+  const email = cookies.email;
+  const { data: session, status } = useSession();
   const signout = () => {
     removeCookie("email");
     removeCookie("token");
@@ -34,28 +31,20 @@ function Content() {
     );
   }
   return (
-    
     <div>
       {session ? (
         <div>
-         
-          <Navbar image={session.user.image} email={session.user.email} session={session} />
-        
+          <Navbar /> {/* Render Navbar when user is signed in */}
+          <News />   {/* Render News when user is signed in */}
+          Signed in as {session.user.name} <br />
+          <img src={session.user.image} height={300} width={300}/>
+          <button onClick={() => signOut()}>Sign out</button>
         </div>
-      ) : token?(
+      ) : (
         <div>
-        <Navbar email={email} />    
-      
-             
-               
-             </div>
-      ):(
-        <div>
-          
           <div className="cont">
-          <ToggleForms/>
+            <ToggleForms/>
           </div>
-         
         </div>
       )}
     </div>

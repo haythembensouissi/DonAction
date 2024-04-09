@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
-import Bootsrapcomponent from './Bootsrapcomponent';
+import bootsrapcomponent from './Bootsrapcomponent';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { useCookies } from 'react-cookie';

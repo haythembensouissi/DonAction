@@ -1,11 +1,14 @@
 import React from 'react'
+import Navbar from '../src/app/components/Navbar'
 
-function profile() {
+const Profile = () => {
   return (
     <div>
-      profile
+      <Navbar/>
+      <h1 className='text-center'>profile</h1>
     </div>
   )
 }
 
-export default profile
+export default Profile
+

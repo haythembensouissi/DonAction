@@ -1,6 +1,7 @@
+"use client";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NewsItem from '../src/app/components/newsitems';
+import NewsItem from '../src/app./src/app/components/newsitems';
 import Navbar from '../src/app/components/Navbar';
 import { useSession } from 'next-auth/react';
 const News = () => {
@@ -11,7 +12,7 @@ const News = () => {
       try {
         const response = await axios.get('https://newsapi.org/v2/top-headlines', {
           params: {
-            country: 'us',
+            country: 'il',
             apiKey: '1061edad44a642e9af7dde41b317ef6c',
           },
         });
