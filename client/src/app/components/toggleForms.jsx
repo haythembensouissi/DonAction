@@ -1,10 +1,12 @@
+"use client"
 import React, { useState } from 'react';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import "./styles.css"
 import {motion} from "framer-motion"
+import GoogleIcon from "@mui/icons-material/Google"
+import FacebookIcon from "@mui/icons-material/Facebook"
 import { useSession, SessionProvider, signIn } from 'next-auth/react';
-
 const ToggleForms = () => {
   const [login, setLogin] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -12,6 +14,7 @@ const ToggleForms = () => {
   const viewLogin = (status) => {
     setLogin(status);
     setIsAnimating(prev => !prev);
+    
   }
 
   const handleGoogleSignIn = () => {
@@ -19,7 +22,7 @@ const ToggleForms = () => {
   }
 
   return (
-    <div>
+    <div style={{height:"600px"}}>
       {login ? (
         <motion.div
           initial={{ x: 0 }}
@@ -45,7 +48,9 @@ const ToggleForms = () => {
         transition={{ duration: 0.5 }}
       >
         <motion.div className="toggle">
-          <motion.div className="toggle-panel toggle-right">
+          <motion.div  initial={{ x: 0, background: "linear-gradient(to right, #C33764, #1D2671)"}}
+        animate={{ background: isAnimating ? "linear-gradient(to right, #C33764, #1D2671)" : "linear-gradient(to left, #00a1ff, #00ff8f)"}}
+          transition={{ duration: 0.5 }} className="toggle-panel toggle-right">
             {!login ? (
               <div>
                 <h1>Welcome, Friend!</h1>
@@ -58,7 +63,13 @@ const ToggleForms = () => {
               </div>
             )}
             <button onClick={() => viewLogin(!login)}>{login ? <h2>Sign up</h2> : <h2>Sign in</h2>}</button>
-            <button onClick={async()=>await signIn("google")}>Sign in with Google</button> {/* Add Google sign-in button */}
+            <h6>or sign in with </h6>
+            <div>
+            <button onClick={async()=>await signIn("google")}>
+              <GoogleIcon/>
+            </button> {/* Add Google sign-in button */}
+            <button onClick={async()=>await signIn("facebook",{redirect:true,callbackUrl:"http://localhost:3000"})}><FacebookIcon/></button>
+            </div>
           </motion.div>
           <div className="toggle-panel toggle-left">
             <button onClick={() => viewLogin(!login)}>Sign In</button>

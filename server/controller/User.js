@@ -20,7 +20,9 @@ const  register=async (req,res)=>{
 
     })
     user.save().then((results)=>{
+      
       const token=jwt.sign({email},"secret",{expiresIn:"24hr"})
+     
         return res.json({results,token})
     }).catch(e=>console.log(e))
     }
@@ -39,9 +41,12 @@ UserModel.findOne({ email: email })
   }
 
   const isPwdValid = await bcrypt.compare(password, user.password);
+  
   if (isPwdValid) {
     const token = jwt.sign({ userid: user._id, firstname: user.firstname, email: user.email }, "secret", { expiresIn: "24hr" });
-    return res.json({ userid: user._id, firstname: user.firstname, email: user.email, token: token });
+
+   
+     return res.json({ userid: user._id, firstname: user.firstname, email: user.email, token: token });
   } else {
     return res.status(401).json({ message: 'Invalid password' });
   }

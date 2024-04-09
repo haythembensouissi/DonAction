@@ -1,8 +1,12 @@
-import React from 'react'
-
+import React from 'react';
+import Navbar from '../src/app/components/Navbar'
+import Aboutt from '../src/app/components/About';
 function About() {
   return (
-    <div>About</div>
+    <div>
+      <Navbar/>
+      <Aboutt/>
+    </div>
   )
 }
 

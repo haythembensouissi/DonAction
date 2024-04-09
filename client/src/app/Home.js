@@ -1,4 +1,4 @@
-import { useSession, signIn, signOut, SessionProvider } from "next-auth/react";
+import { useSession, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
 import {Image} from "next/image"
 import Navbar from "./components/Navbar";
@@ -13,8 +13,23 @@ export default function Home() {
 }
 
 function Content() {
-  const { data: session } = useSession();
-
+  const [cookies, , removeCookie] = useCookies(null); // Removed unused setCookie
+  const [loading] = useState(true); // Removed unused setLoading
+  const token = cookies.token;
+  const email = cookies.email;
+  const { data: session, status } = useSession();
+  const signout = () => {
+    removeCookie("email");
+    removeCookie("token");
+  };
+  if (status === "loading") {
+    // Show loading spinner
+    return (
+      <div className="loading-spinner">
+        <ClipLoader color={"#36D7B7"} loading={loading} size={50} />
+      </div>
+    );
+  }
   return (
     <div>
       {session ? (
