@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './Donation.module.css';
 import {useCookies} from "react-cookie"
-const DonationForm = () => {
+const DonationForm = ({page,setPage}) => {
   
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const name=cookies.username
@@ -21,12 +21,16 @@ const handleSubmit = async(e) => {
     headers:{"Content-Type":"application/json"}
    })
    const data=await response.json()
-   setholdername("")
-   setcardnumber("")
-   setamount("")
-   setexpirydate("")
-   setCvv("")
-    setSubmitted(true);
+   if (response.ok){
+    setholdername("")
+    setcardnumber("")
+    setamount("")
+    setexpirydate("")
+    setCvv("")
+     setSubmitted(true);
+     setPage("mainpage")
+   }
+   
   };
 
   return (
