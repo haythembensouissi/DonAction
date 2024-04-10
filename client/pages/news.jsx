@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NewsItem from '../src/app./src/app/components/newsitems';
+import NewsItem from '../src/app/components/newsitems';
 import Navbar from '../src/app/components/Navbar';
 import { useSession } from 'next-auth/react';
 const News = () => {

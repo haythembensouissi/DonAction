@@ -1,10 +1,13 @@
 import { useSession, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
-import {Image} from "next/image"
+import { useCookies } from 'react-cookie';
 import Navbar from "./components/Navbar";
-import News from "../../pages/news";
-import NewsItem from "./components/newsitems";
-export default function Home() {
+import Home from "./components/home"; // Updated component name to start with uppercase letter
+import { useState } from "react";
+import { ClipLoader } from "react-spinners";
+
+export default function HomePage() { // Renamed component to HomePage for clarity
+  
   return (
     <SessionProvider>
       <Content />
@@ -34,16 +37,18 @@ function Content() {
     <div>
       {session ? (
         <div>
-          <Navbar /> {/* Render Navbar when user is signed in */}
-          <News />   {/* Render News when user is signed in */}
-          Signed in as {session.user.name} <br />
-          <img src={session.user.image} height={300} width={300}/>
-          <button onClick={() => signOut()}>Sign out</button>
+          <Navbar image={session.user.image} email={session.user.email} session={session} />
+          <Home/>
+        </div>
+      ) : token ? (
+        <div>
+          <Navbar email={email} />    
+          <Home/>
         </div>
       ) : (
         <div>
           <div className="cont">
-            <ToggleForms/>
+            <ToggleForms />
           </div>
         </div>
       )}

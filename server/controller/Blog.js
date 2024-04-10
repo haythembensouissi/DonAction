@@ -26,4 +26,17 @@ const Allblogs= async (req,res)=>{
         
     }
 }
-module.exports={Sendblog,Allblogs}
+const DeleteBlog = async (req, res) => {
+    try {
+        const result = await BlogModel.deleteOne({ _id: req.params.id });
+        if (result.deletedCount === 1) {
+            res.status(200).json({ message: 'Blog deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Blog not found' });
+        }
+    } catch (error) {
+        console.error('Error deleting Blog:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+module.exports={Sendblog,Allblogs,DeleteBlog}

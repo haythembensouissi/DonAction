@@ -5,7 +5,7 @@ import { useSession, SessionProvider } from 'next-auth/react'; // Import useSess
 import {Auth} from "./components/toggleForms"
 import Home1 from './Home';
 import Navbar from './components/Navbar';
-import News from '../../pages./../pages/news';
+import News from '../../pages/news';
 import newsitems from './components/newsitems';
 import Home from "./components/home"; 
 const Page = () => {
@@ -26,7 +26,7 @@ const Page = () => {
 
         <div>
     <Home1/>
-    <Home/>
+    
     </div>
   )
 };

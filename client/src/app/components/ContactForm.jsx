@@ -1,18 +1,18 @@
 // ContactForm.js
-
+import './styles.css'
 
 const ContactForm = () => {
   return (
-    <div className={styles.container}>
+    <div className={"container"}>
       <div style={{ textAlign: 'center' }}>
         <h2>Contact Us</h2>
         <p>Swing by for a cup of coffee, or leave us a message:</p>
       </div>
-      <div className={styles.row}>
-        <div className={styles.column}>
-          <img src="/w3images/map.jpg" alt="Map" className={styles.mapImage} />
+      <div className={"row"}>
+        <div className={"column"}>
+          <img src="/w3images/map.jpg" alt="Map" className={"mapImage"} />
         </div>
-        <div className={styles.column}>
+        <div className={"column"}>
           <form action="/action_page.php">
             <label htmlFor="fname">First Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Your name.." />
