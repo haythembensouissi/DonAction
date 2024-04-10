@@ -11,8 +11,8 @@ const DonationForm = ({page,setPage}) => {
   const [holdername, setholdername] = useState(name);
   const [cardnumber, setcardnumber] = useState("");
   const [expirydate, setexpirydate] = useState("");
+  const [amount, setamount] = useState("");
   const [Cvv, setCvv] = useState("");
-  const amount=cookies.amount
 const router=useRouter()
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ const router=useRouter()
    if (response.ok){
     setholdername("")
     setcardnumber("")
+    setamount("")
     setexpirydate("")
     setCvv("")
      setSubmitted(true);
@@ -67,7 +68,8 @@ const router=useRouter()
           <div className={styles.input_container}>
             <label htmlFor="card_number_field" className={styles.input_label}>Card Number</label>
             <input value={cardnumber} onChange={(e) => setcardnumber(e.target.value)} id="card_number_field" className={styles.input_field} type="number" name="input-name" title="Input title" placeholder="0000 0000 0000 0000" />
-            
+            <label htmlFor="card_number_field" className={styles.input_label}>Amount</label>
+            <input value={amount} onChange={(e) => setamount(e.target.value)} id="card_number_field" className={styles.input_field} type="number" name="input-name" title="Input title" placeholder="feel free !" />
           </div>
           <div className={styles.input_container}>
             <label htmlFor="expiry_cvv_field" className={styles.input_label}>Expiry Date / CVV</label>
