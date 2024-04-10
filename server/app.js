@@ -10,7 +10,7 @@ const Topicrouter = require("./routers/Topic")
 app.use(cors())
 app.use(express.json())
 
-const port = process.env.Port; // Corrected to use "PORT" instead of "port"
+const port = process.env.Port;
 
 app.use(userRouter)
 app.use(Donationrouter)
