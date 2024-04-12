@@ -25,8 +25,6 @@ const Page = () => {
      
 
         <div>
-    <Home1/>
-    <Home/>
     </div>
   )
 };
