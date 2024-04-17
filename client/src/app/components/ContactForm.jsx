@@ -1,37 +1,65 @@
-// ContactForm.js
+import React from "react";
+import styles from "./contact.module.css";
+import Image from "next/image";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const notify = () => {
+  toast.success('success', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    //transition: Bounce,
+    });
+};
 
-const ContactForm = () => {
+const Contact = () => {
   return (
     <div className={styles.container}>
-      <div style={{ textAlign: 'center' }}>
-        <h2>Contact Us</h2>
-        <p>Swing by for a cup of coffee, or leave us a message:</p>
-      </div>
-      <div className={styles.row}>
-        <div className={styles.column}>
-          <img src="/w3images/map.jpg" alt="Map" className={styles.mapImage} />
+      <h1 className={styles.title}>Let's Keep in Touch</h1>
+      <div className={styles.content}>
+        <div className={styles.imgContainer}>
+          <Image
+            src="/contact.png"
+            alt=""
+            fill={true}
+            className={styles.image}
+          />
         </div>
-        <div className={styles.column}>
-          <form action="/action_page.php">
-            <label htmlFor="fname">First Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Your name.." />
-            <label htmlFor="lname">Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name.." />
-            <label htmlFor="country">Country</label>
-            <select id="country" name="country">
-              <option value="australia">Australia</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
-            </select>
-            <label htmlFor="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style={{ height: '170px' }}></textarea>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+        <form className={styles.form}>
+          <input type="text" placeholder="name" className={styles.input} />
+          <input type="text" placeholder="email" className={styles.input} />
+          <textarea
+            className={styles.textArea}
+            placeholder="message"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <div>
+            <button className={styles.button} onClick={notify}>Notify!</button>
+            <ToastContainer
+              position="top-right"
+             autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+              transition="Bounce"
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default ContactForm;
+export default Contact;

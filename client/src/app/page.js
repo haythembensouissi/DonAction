@@ -24,7 +24,8 @@ const Page = () => {
     
      
 
-        <div>
+    <div>
+    <Home1/>
     </div>
   )
 };

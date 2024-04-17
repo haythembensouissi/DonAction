@@ -1,33 +1,39 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import styles from './Donation.module.css';
+import styles from '../src/app/components/Donation.module.css';
 import { useCookies } from "react-cookie";
-
-const DonationForm = () => {
+import { useRouter } from 'next/navigation';
+const DonationForm = ({page,setPage}) => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const name = cookies.username;
   const [submitted, setSubmitted] = useState(false);
   const [holdername, setholdername] = useState(name);
   const [cardnumber, setcardnumber] = useState("");
-  const [amount, setamount] = useState("");
   const [expirydate, setexpirydate] = useState("");
+  const [amount, setamount] = useState("");
   const [Cvv, setCvv] = useState("");
-
+const router=useRouter()
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/donate", {
-      method: "POST",
-      body: JSON.stringify({ holdername, cardnumber, amount, expirydate, Cvv }),
-      headers: { "Content-Type": "application/json" }
-    });
-    const data = await response.json();
-    setholdername("");
-    setcardnumber("");
-    setamount("");
-    setexpirydate("");
-    setCvv("");
-    setSubmitted(true);
+   const response=await fetch("http://localhost:5000/api/donate",{
+    method:"POST",
+    body:JSON.stringify({holdername,cardnumber,amount,expirydate,Cvv}),
+    headers:{"Content-Type":"application/json"}
+   })
+   const data=await response.json()
+   if (response.ok){
+    setholdername("")
+    setcardnumber("")
+    setamount("")
+    setexpirydate("")
+    setCvv("")
+     setSubmitted(true);
+     removeCookie("amount")
+     removeCookie("id")
+     router.push("/Donate")
+   }
+   
   };
 
   return (

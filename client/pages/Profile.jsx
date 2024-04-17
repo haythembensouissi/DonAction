@@ -1,89 +1,108 @@
-import React, { useState, useEffect } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
-import Cookies from 'universal-cookie';
-import './Profile.css'; 
-const Profile = () => {
-  const cookies = new Cookies();
+import { useCookies } from "react-cookie";
 
-  const [userData, setUserData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-    image: '',
-  });
+const Profile = ({ donations }) => {
+  const [cookies] = useCookies(null);
+  const [donation,setdonations]=useState([])
+  const [blog,setblogs]=useState([])
+  const [page,setpage]=useState("profile")
+  const username = cookies.username;
+  const email=cookies.email
+  const getblogs=async ()=>{
+    const res=await fetch("http://localhost:5000/api/blog/get")
+    const blogs=await res.json()
+    setblogs(blogs)
+  }
+  useEffect(()=>{
+    getDonations()
+    getblogs()
+  }
+  
+  ,[])
+const getDonations=async ()=>{
+  const res = await fetch('http://localhost:5000/api/getdonations');
+  const donations = await res.json();
+  setdonations(donations)
+}
+  const DeleteDonation = async (id) => {
+    try {
+      
+      const res =  await fetch(`http://localhost:5000/api/deletedonation/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      });
 
-  useEffect(() => {
-   
-    const savedUserData = cookies.get('userData');
-    if (savedUserData) {
-      setUserData(savedUserData);
+      if (res.ok) {
+      getDonations()
+      } else {
+        console.error('Error deleting donation:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting donation:', error);
     }
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
   };
+  
+  const deleteBlog = async (id) => {
+    try {
+      
+      const res =  await fetch(`http://localhost:5000/api/blog/delete/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Save user data to cookies
-    cookies.set('userData', userData, { path: '/' });
-    // You can also send the data to a backend for further processing
-    console.log('User data saved:', userData);
+      if (res.ok) {
+      getblogs()
+      } else {
+        console.error('Error deleting blog', res.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting blog', error);
+    }
   };
-
+const filereddonations=donation.filter(donation=>donation.holdername==username)
+const filteredblogs=blog.filter(blog=>blog.useremail==email)
   return (
     <div>
       <Navbar />
-      <section className='profile-section'>
-        <h1 className='profile-heading'>Profile</h1>
-        {userData.image && <img src={userData.image} alt="User" className="profile-image" />}
-        <form className='profile-form' onSubmit={handleSubmit}>
-          <div className='form-group'>
-            <input
-              type="text"
-              placeholder='First and Last Name'
-              name="fullName"
-              value={userData.fullName}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type="email"
-              placeholder='Email'
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type="tel"
-              placeholder='Phone Number'
-              name="phoneNumber"
-              value={userData.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type="password"
-              placeholder='Password'
-              name="password"
-              value={userData.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='form-group'>
-            <button type='submit'>Save</button>
-          </div>
-        </form>
-      </section>
+     
+{page=="profile"?(
+  <div>
+  <h1 className='text-center'>Profile</h1>
+  <button onClick={()=>setpage("blogs")}>view blogs</button>
+  <button onClick={()=>setpage("donations")}>view donations</button>
+  </div>)
+  :page=="donations"?(<div>
+    <button onClick={()=>setpage("profile")}>back</button>
+    {filereddonations.map((donation, key) => (
+      <div key={key}>
+        <h2>{donation.amount}</h2>
+        <h3>{donation.holdername}</h3>
+        <button onClick={() => DeleteDonation(donation._id)}>Cancel Donation</button>
+      </div>
+
+    ))}
+    </div>
+  ):page=="blogs"?(
+    <div>
+    <button onClick={()=>setpage("profile")}>back</button>
+
+    {filteredblogs.map((blog, key) => (
+      <div key={key}>
+        <h2>{blog.title}</h2>
+        <h3>{blog.content}</h3>
+        <button onClick={() => deleteBlog(blog._id)}>delete blog</button>
+      </div>
+
+    ))}
+    </div>
+    
+  ):null
+}
+     
+    
     </div>
   );
 };
-
 export default Profile;

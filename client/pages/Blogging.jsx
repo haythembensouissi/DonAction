@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import {useCookies} from "react-cookie"
 import '../src/app/components/Blog.css'
+import Navbar from '../src/app/components/Navbar'
 function Blogging() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
 const useremail=cookies.email
@@ -23,7 +24,9 @@ const handleSubmit = async(e) => {
   setSubmitted(true);
 };
   return (
-    
+    <div>
+    <Navbar />
+
     <div id="form-main">
     <div id="form-div">
       <form className="form" id="form1">
@@ -44,6 +47,7 @@ const handleSubmit = async(e) => {
           <div className="ease"></div>
         </div>
       </form>
+    </div>
     </div>
     </div>
   )

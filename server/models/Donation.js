@@ -5,7 +5,8 @@ const DonationSchema= new mongoose.Schema({
     cardnumber:{type:String},
     amount:{type:Number},
     expirydate:{type:Date},
-    Cvv:{type:String}
+    Cvv:{type:String},
+    
     
 })
 const DonationModel=mongoose.model("Donations",DonationSchema)
