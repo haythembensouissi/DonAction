@@ -22,6 +22,7 @@ const SignInForm = () => {
       console.log("Received response:", response.status, data);
       if (response.ok) {
         console.log("Sign-in successful");
+        setCookie("username",data.firstname)
         setCookie("token", data.token);
         setCookie("email", data.email);
       } else {

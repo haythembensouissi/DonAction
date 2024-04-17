@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
 import { useCookies } from "react-cookie";
@@ -104,6 +105,4 @@ const filteredblogs=blog.filter(blog=>blog.useremail==email)
     </div>
   );
 };
-
-
 export default Profile;

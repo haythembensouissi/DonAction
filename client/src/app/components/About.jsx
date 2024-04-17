@@ -1,40 +1,61 @@
-// pages/about.js
-
-import Head from 'next/head';
-
-function About() {
+import React from "react";
+import Image from "next/image";
+import Button from "./Buttom";
+const About = () => {
   return (
-    <div>
-      <Head>
-        <title>About Us</title>
-      </Head>
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-8 mx-auto">
-            <h1 className="text-center mb-4">About Our Project</h1>
-            <p className="lead text-center">
-              Our project is dedicated to collecting donations for Palestine. We aim to provide humanitarian aid to the people affected by the ongoing crises in the region. By contributing to our cause, you can help make a difference in the lives of those in need.
-            </p>
-            <p className="text-center">
-              For more information or inquiries, please contact us at <a href="mailto:example@example.com">example@example.com</a>.
-            </p>
-          </div>
+    <div className={styles.container}>
+      <div className={styles.imgContainer}>
+        <Image
+          src="/1.jpg"
+          fill={true}
+          alt=""
+          className={styles.img}
+        />
+        <div className={styles.imgText}>
+          <h1 className={styles.imgTitle}>Digital Storytellers</h1>
+          <h2 className={styles.imgDesc}>
+            Handcrafting award winning digital experiences
+          </h2>
         </div>
       </div>
-      <style jsx>{`
-        .lead {
-          font-size: 1.25rem;
-        }
-        a {
-          color: #007bff;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
-      `}</style>
+      <div className={styles.textContainer}>
+        <div className={styles.item}>
+          <h1 className={styles.title}>Who Are We?</h1>
+          <p className={styles.desc}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            quae dolor, optio voluptatibus magnam iure esse tempora beatae. A
+            suscipit eos. Animi quibusdam cum omnis officiis voluptatum quo ea
+            eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Ducimus quae dolor, optio voluptatibus magnam iure esse tempora
+            beatae, a suscipit eos. Animi quibusdam cum omnis officiis
+            <br />
+            <br />
+            voluptatum quo ea eveniet? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Ducimus quae dolor, optio voluptatibus magnam iure
+            esse tempora beatae, a suscipit eos. Animi quibusdam cum omnis
+            officiis voluptatum quo ea eveniet?
+          </p>
+        </div>
+        <div className={styles.item}>
+          <h1 className={styles.title}>What We Do?</h1>
+          <p className={styles.desc}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            quae dolor, optio voluptatibus magnam iure esse tempora beatae, a
+            suscipit eos. Animi quibusdam cum omnis officiis voluptatum quo ea
+            eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit. -
+            Creative Illustrations
+            <br />
+            <br /> - Dynamic Websites
+            <br />
+            <br /> - Fast and Handy
+            <br />
+            <br /> - Mobile Apps
+          </p>
+          <Button url="/contact" text="Contact" />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default About;

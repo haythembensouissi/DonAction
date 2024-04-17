@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'; // Import React
 import 'bootstrap/dist/css/bootstrap.css';
 import bootsrapcomponent from './Bootsrapcomponent';
@@ -17,7 +18,7 @@ let email=cookies.email
   return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary "data-bs-theme="dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/"><span className='badge bg-danger text-bg-secondary fs-3'>DonAction</span></a>
+          <a className="navbar-brand" href="/"><span className='badge bg-danger text-bg-secondary fs-3'>DonAction </span></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -42,6 +43,7 @@ let email=cookies.email
               <li className="nav-item">
               <Link className='nav-link' href={"/Profile"}>Profile</Link>
               </li>
+            
               {props.email?<p style={{color:"white"}}>welcome {props.email}</p>:null}
               {props.image?<img src={props.image} height={50} width={50} style={{borderRadius:"50px"}}/>:null}
               <button  className="btn btn-outline-success" onClick={token?()=>signout():props.session?()=>signOut():null}>Signout</button>

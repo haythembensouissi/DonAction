@@ -37,8 +37,8 @@ function Content() {
     <div>
       {session ? (
         <div>
-          <Navbar image={session.user.image} email={session.user.email} session={session} />
-          <Home/>
+        <Navbar image={session.user.image} email={session.user.email} session={session} />
+        <Home/>
         </div>
       ) : token ? (
         <div>
