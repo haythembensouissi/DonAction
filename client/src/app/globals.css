@@ -1,5 +1,6 @@
-/* styles.css */
-.news-container {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;.news-container {
   max-width: 800px;
   margin: 0 auto;
 }
