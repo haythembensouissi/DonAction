@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities;.news-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 .card-container {
   display: flex;

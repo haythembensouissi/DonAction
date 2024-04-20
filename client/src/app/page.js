@@ -18,10 +18,14 @@ const Page = () => {
   const email = cookies.email;
 
   return (
-    <div>
     
-    <HomePage/>
-    </div>
+
+    
+     
+
+       
+<HomePage/>    
+
   )
 };
 

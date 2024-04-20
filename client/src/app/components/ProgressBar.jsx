@@ -45,13 +45,21 @@ const PasswordStrengthMeter = ({ password }) => {
     backgroundColor: funcProgressColor(),
     height: '100px'
   })
+  const colors=['rgb(255,214,161)',
+  'rgb(255,175,163)',
+  'rgb(108,115,148)',
+  'rgb(141,181,145)'
 
+]
+const randomcolor=colors[Math.floor(Math.random()*colors.length)]
   return (
     <>
     
-      <div className="progress" style={{ height: '50px' }}>
-        <div className="progress-bar" style={changePasswordColor()}></div>
-      </div>
+    <div className='outer-bar'>
+    <div className='inner-bar' style={{width:`${50}%`,backgroundColor:randomcolor}}>
+    </div>
+    
+    </div>
       <p style={{ color: funcProgressColor() }}>{createPassLabel()} password</p>
     </>
   )

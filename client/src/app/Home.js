@@ -16,10 +16,11 @@ export default function HomePage() { // Renamed component to HomePage for clarit
 }
 
 function Content() {
-  const [cookies, , removeCookie] = useCookies(null); // Removed unused setCookie
-  const [loading] = useState(true); // Removed unused setLoading
+  const [cookies, setCookie, removeCookie] = useCookies(null); // Removed unused setCookie
+  const [loading,setLoading] = useState(true); // Removed unused setLoading
   const token = cookies.token;
   const email = cookies.email;
+  const image = cookies.image;
   const { data: session, status } = useSession();
   const signout = () => {
     removeCookie("email");
@@ -33,16 +34,17 @@ function Content() {
       </div>
     );
   }
+  var home=true
   return (
     <div>
       {session ? (
         <div>
-        <Navbar image={session.user.image} email={session.user.email} session={session} />
+        <Navbar home={home} image={session.user.image} email={session.user.email} session={session} />
         <Home/>
         </div>
       ) : token ? (
         <div>
-          <Navbar email={email} />    
+          <Navbar home={home} image={image} email={email} />    
           <Home/>
         </div>
       ) : (
