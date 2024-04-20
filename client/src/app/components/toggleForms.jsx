@@ -18,7 +18,7 @@ const ToggleForms = () => {
   }
 
   const handleGoogleSignIn = () => {
-    signIn('google'); // Sign in with Google
+    signIn('google').then(data=>console.log(data))
   }
 
   return (
@@ -65,7 +65,7 @@ const ToggleForms = () => {
             <button onClick={() => viewLogin(!login)}>{login ? <h2>Sign up</h2> : <h2>Sign in</h2>}</button>
             <h6>or sign in with </h6>
             <div>
-            <button onClick={async()=>await signIn("google")}>
+            <button onClick={()=>handleGoogleSignIn()}>
               <GoogleIcon/>
             </button> {/* Add Google sign-in button */}
             <button onClick={async()=>await signIn("facebook",{redirect:true,callbackUrl:"http://localhost:3000"})}><FacebookIcon/></button>

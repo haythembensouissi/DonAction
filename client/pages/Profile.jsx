@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
 import { useCookies } from "react-cookie";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import * as antd from 'antd';
+
 const Profile = () => {
   const [loadingDonations, setLoadingDonations] = useState(true);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
@@ -12,8 +14,8 @@ const Profile = () => {
   const [page, setPage] = useState("profile");
   const username = cookies.username;
   const email = cookies.email;
-  const image =cookies.image
-
+  const image=cookies.image
+const {Meta}=antd.Card
   useEffect(() => {
     getDonations();
     getBlogs();
@@ -88,54 +90,54 @@ const Profile = () => {
       {page === "profile" ? (
         <div>
           <h1 className='text-center'>Profile</h1>
-          <button onClick={() => setPage("blogs")}>View Blogs</button>
-          <button onClick={() => setPage("donations")}>View Donations</button>
+          <antd.Button onClick={() => setPage("blogs")}>View Blogs</antd.Button>
+          <antd.Button onClick={() => setPage("donations")}>View Donations</antd.Button>
         </div>
       ) : page === "donations" ? (
         <div>
-          <button onClick={() => setPage("profile")}><ArrowBackIcon /></button>
+          <antd.Button onClick={() => setPage("profile")}><ArrowBackIcon /></antd.Button>
           {filteredDonations.map((donation, key) => (
             <div key={key}>
-            <Card className="max-w-[400px]">
-            <CardHeader className="flex gap-3">
-              <Image
-                alt="nextui logo"
-                height={40}
-                radius="sm"
-                src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                width={40}
-              />
-              <div className="flex flex-col">
-                <p className="text-md">NextUI</p>
-                <p className="text-small text-default-500">nextui.org</p>
-              </div>
-            </CardHeader>
-            <Divider/>
-            <CardBody>
-              <p>Make beautiful websites regardless of your design experience.</p>
-            </CardBody>
-            <Divider/>
-            <CardFooter>
-              <Link
-                isExternal
-                showAnchorIcon
-                href="https://github.com/nextui-org/nextui"
+            
+              <antd.Card
+                style={{ width: 300, marginTop: 16 }}
+                loading={loadingDonations}
               >
-                Visit source code on GitHub.
-              </Link>
-            </CardFooter>
-          </Card>
-       
+              <Meta
+              avatar={<antd.Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />}
+              title={donation.holdername}
+              
+              description={donation.amount}
+              />
+             
+              </antd.Card>
+                <antd.Skeleton loading={loadingDonations} avatar active>
+                <antd.Button onClick={()=>DeleteDonation(donation._id)} danger type="primary">Cancel donation</antd.Button>
+                </antd.Skeleton>
+            
             </div>
           ))}
         </div>
       ) : page === "blogs" ? (
         <div>
-          <button onClick={() => setPage("profile")}><ArrowBackIcon/></button>
+          <antd.Button onClick={() => setPage("profile")}><ArrowBackIcon/></antd.Button>
           {filteredBlogs.map((blog, key) => (
             <div key={key}>
             
-            
+              <antd.Card
+                style={{ width: 300, marginTop: 16 }}
+                loading={loadingBlogs}
+              >
+              <Meta
+              avatar={<antd.Avatar src={image} />}
+              title={blog.title}
+              description={blog.content}
+              />
+             
+              </antd.Card>
+                <antd.Skeleton loading={loadingBlogs} avatar active>
+                <antd.Button onClick={()=>deleteBlog(blog._id)} danger type="primary">delete</antd.Button>
+                </antd.Skeleton>
             
             </div>
           ))}

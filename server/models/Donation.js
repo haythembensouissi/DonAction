@@ -6,6 +6,7 @@ const DonationSchema= new mongoose.Schema({
     amount:{type:Number},
     expirydate:{type:Date},
     Cvv:{type:String},
+    useremail:{type:String}
     
     
 })

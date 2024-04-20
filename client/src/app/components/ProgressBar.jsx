@@ -55,11 +55,7 @@ const randomcolor=colors[Math.floor(Math.random()*colors.length)]
   return (
     <>
     
-    <div className='outer-bar'>
-    <div className='inner-bar' style={{width:`${50}%`,backgroundColor:randomcolor}}>
-    </div>
-    
-    </div>
+   
       <p style={{ color: funcProgressColor() }}>{createPassLabel()} password</p>
     </>
   )
