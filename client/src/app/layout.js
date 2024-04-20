@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Bootsrapcomponent from './components/Bootsrapcomponent';
 import { EdgeStoreProvider } from '../lib/edgestore';
+import Navbar from './components/Navbar';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={inter.className}>
+      <Navbar/>
       <EdgeStoreProvider>{children}</EdgeStoreProvider>
       <Bootsrapcomponent />
       </body>

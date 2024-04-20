@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
 import { useCookies } from "react-cookie";
-
+import ProfilSet from '../src/app/components/ProfilSet';
 const Profile = ({ donations }) => {
   const [cookies] = useCookies(null);
   const [donation,setdonations]=useState([])
@@ -70,6 +70,7 @@ const filteredblogs=blog.filter(blog=>blog.useremail==email)
 {page=="profile"?(
   <div>
   <h1 className='text-center'>Profile</h1>
+  <ProfilSet/>
   <button onClick={()=>setpage("blogs")}>view blogs</button>
   <button onClick={()=>setpage("donations")}>view donations</button>
   </div>)
