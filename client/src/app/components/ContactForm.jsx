@@ -4,7 +4,8 @@ import Image from "next/image";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const notify = () => {
+const notify = (e) => {
+  e.preventDefault();
   toast.success('success', {
     position: "top-right",
     autoClose: 5000,
@@ -43,17 +44,7 @@ const Contact = () => {
           <div>
             <button className={styles.button} onClick={notify}>Notify!</button>
             <ToastContainer
-              position="top-right"
-             autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="dark"
-              transition="Bounce"
+          
             />
           </div>
         </form>

@@ -1,7 +1,7 @@
 const mongoose=require("mongoose")
 const DonationModel=require("../models/Donation")
 const Donate=(req,res)=>{
-    const {holdername,cardnumber,amount,expirydate,Cvv}=req.body;
+    const {holdername,cardnumber,amount,expirydate,Cvv,useremail}=req.body;
     try {
         const Donation=new DonationModel({
             _id:new mongoose.Types.ObjectId(),
@@ -9,7 +9,8 @@ const Donate=(req,res)=>{
             cardnumber:cardnumber,
             amount:amount,
             expirydate:expirydate,
-            Cvv:Cvv
+            Cvv:Cvv,
+            useremail:useremail
         })
         Donation.save().then(results=>{
             return res.status(201).json({results})

@@ -5,11 +5,15 @@ import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { useCookies } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useRouter } from 'next/navigation';
 const Navbar = (props) => {
+  const router=useRouter()
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const signout = () => {
     removeCookie("email");
     removeCookie("token");
+    removeCookie("username")
+    router.push("/")
   };
 
   
