@@ -21,7 +21,8 @@ const SignInForm = () => {
       const data = await response.json();
       console.log("Received response:", response.status, data);
       if (response.ok) {
-        console.log("Sign-in successful");
+       
+        setCookie("username",data.firstname)
         setCookie("token", data.token);
         setCookie("email", data.email);
       } else {
@@ -52,10 +53,12 @@ const SignInForm = () => {
         <input onChange={(e)=>setemail(e.target.value)} value={email} type="email" placeholder="Email" />
         <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" placeholder="Password" />
         <a href="#">Forget Your Password?</a>
+        
         {error&&<p>{error}</p>}
         <button onClick={(e)=>handleSubmit(e)}>Sign In</button>
         </form>
     </motion.div>
+    
   );
 };
 

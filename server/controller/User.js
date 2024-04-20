@@ -15,7 +15,8 @@ const  register=async (req,res)=>{
             lastname:req.body.lastname,
             email:email,  
             password:hashedpwd,
-            phonenumber:req.body.phonenumber
+            phonenumber:req.body.phonenumber,
+            image:req.body.image
             
 
     })
@@ -46,7 +47,7 @@ UserModel.findOne({ email: email })
     const token = jwt.sign({ userid: user._id, firstname: user.firstname, email: user.email }, "secret", { expiresIn: "24hr" });
 
    
-     return res.json({ userid: user._id, firstname: user.firstname, email: user.email, token: token });
+     return res.json({ userid: user._id, firstname: user.firstname, email: user.email,image:user.image, token: token });
   } else {
     return res.status(401).json({ message: 'Invalid password' });
   }
