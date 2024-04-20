@@ -24,8 +24,7 @@ function DonationCard({ title, description, totalDonation, image,index }) {
     router.push("/DonationForm")
     setCookie("amount",totalDonation)
     setCookie("id",index)
-    
-
+    setCookie("sessionemail",cookies.sessionemail)
   }
     return (
       <div className="card" style={cardStyle}>

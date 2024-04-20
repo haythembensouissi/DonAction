@@ -13,6 +13,7 @@ const Navbar = (props) => {
     removeCookie("email");
     removeCookie("token");
     removeCookie("username")
+    removeCookie("image")
     router.push("/")
   };
 
@@ -31,22 +32,34 @@ let image=cookies.image
           <div  className=" navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/news">News</a>
+                <a className="nav-link active" onClick={()=>{setCookie("sessionimage",props.image)
+                setCookie("sessionemail",props.email)
+                }} aria-current="page" href="/news">News</a>
               </li>
               <li className="nav-item">
-              <Link className='nav-link' href={"/Blogging"}>Blogging</Link>
+              <Link className='nav-link' onClick={()=>{setCookie("sessionimage",props.image)
+              setCookie("sessionemail",props.email)
+              }} href={"/Blogging"}>Blogging</Link>
               </li>
               <li className="nav-item">
-                <Link className='nav-link' href={"/Contact"}>Contact</Link>
+                <Link className='nav-link' onClick={()=>{setCookie("sessionimage",props.image)
+                setCookie("sessionemail",props.email)
+                }} href={"/Contact"}>Contact</Link>
               </li>
               <li className="nav-item">
-              <Link className='nav-link' href={"/About"}>About</Link>
+              <Link className='nav-link' onClick={()=>{setCookie("sessionimage",props.image)
+              setCookie("sessionemail",props.email)
+              }} href={"/About"}>About</Link>
               </li>
               <li className="nav-item">
-              <Link className='nav-link' href={"/Donate"}>Donate</Link>
+              <Link className='nav-link' onClick={()=>{setCookie("sessionimage",props.image)
+            setCookie("sessionemail",props.email)
+            }} href={"/Donate"}>Donate</Link>
               </li>
               <li className="nav-item">
-            <Link className='nav-link' href='/Profile'>Profile</Link>
+            <Link className='nav-link' onClick={()=>{setCookie("sessionimage",props.image)
+            setCookie("sessionemail",props.email)
+            }} href='/Profile'>Profile</Link>
               </li>
             
               {props.email?<p style={{color:"white"}}>welcome {props.email}</p>:null}
