@@ -90,7 +90,7 @@ const SignUpForm = () => {
     } else {
       console.error('Upload failed');
     }
-     
+     const image=cookies.image
        const response=await fetch("http://localhost:5000/api/users/register",{
         method:"POST",
         body:JSON.stringify({firstname,lastname,email,password,phonenumber,image}),

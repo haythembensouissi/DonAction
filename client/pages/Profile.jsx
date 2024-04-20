@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import * as antd from 'antd';
@@ -12,9 +12,11 @@ const Profile = () => {
   const [donation, setDonations] = useState([]);
   const [blog, setBlogs] = useState([]);
   const [page, setPage] = useState("profile");
-  const username = cookies.username;
-  const email = cookies.email;
+  console.log(cookies.sessionemail)
+  const username = cookies.username
+  const email = cookies.email||cookies.sessionemail
   const image=cookies.image
+  const sessionimage=cookies.sessionimage
 const {Meta}=antd.Card
   useEffect(() => {
     getDonations();
@@ -81,7 +83,7 @@ const {Meta}=antd.Card
     }
   };
 
-  const filteredDonations = donation.filter(donation => donation.holdername === username);
+  const filteredDonations = donation.filter(donation => donation.useremail === email);
   const filteredBlogs = blog.filter(blog => blog.useremail === email);
 
   return (
@@ -104,7 +106,7 @@ const {Meta}=antd.Card
                 loading={loadingDonations}
               >
               <Meta
-              avatar={<antd.Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />}
+              avatar={<antd.Avatar src={image?image:sessionimage?sessionimage:null} />}
               title={donation.holdername}
               
               description={donation.amount}
@@ -129,7 +131,7 @@ const {Meta}=antd.Card
                 loading={loadingBlogs}
               >
               <Meta
-              avatar={<antd.Avatar src={image} />}
+              avatar={<antd.Avatar src={image?image:sessionimage?sessionimage:null} />}
               title={blog.title}
               description={blog.content}
               />
