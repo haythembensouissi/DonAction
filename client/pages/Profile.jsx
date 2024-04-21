@@ -91,47 +91,10 @@ const {Meta}=antd.Card
   return (
     <div>
       <Navbar />
-     
-{page=="profile"?(
-  <div>
-  <h1 className='text-center'>Profile</h1>
-  <ProfilSet/>
-  <button onClick={()=>setpage("blogs")}>view blogs</button>
-  <button onClick={()=>setpage("donations")}>view donations</button>
-  </div>)
-  :page=="donations"?(<div>
-    <button onClick={()=>setpage("profile")}>back</button>
-    {filereddonations.map((donation, key) => (
-      <div key={key}>
-        <h2>{donation.amount}</h2>
-        <h3>{donation.holdername}</h3>
-        <button onClick={() => DeleteDonation(donation._id)}>Cancel Donation</button>
-      </div>
-
-    ))}
-    </div>
-  ):page=="blogs"?(
-    <div>
-    <button onClick={()=>setpage("profile")}>back</button>
-
-    {filteredblogs.map((blog, key) => (
-      <div key={key}>
-        <h2>{blog.title}</h2>
-        <h3>{blog.content}</h3>
-        <button onClick={() => deleteBlog(blog._id)}>delete blog</button>
-      </div>
-
-    ))}
-    </div>
-    
-  ):null
-}
-     
-    
 
       {page === "profile" ? (
         <div>
-          <h1 className='text-center'>Profile</h1>
+        <ProfilSet image={image}/>
           <antd.Button onClick={() => setPage("blogs")}>View Blogs</antd.Button>
           <antd.Button onClick={() => setPage("donations")}>View Donations</antd.Button>
         </div>
