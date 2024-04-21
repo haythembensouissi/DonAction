@@ -1,5 +1,4 @@
 "use client";
-import './components/styles.css';
 import { useCookies } from 'react-cookie';
 import { useSession, SessionProvider } from 'next-auth/react'; // Import useSession and SessionProvider
 import {Auth} from "./components/toggleForms"

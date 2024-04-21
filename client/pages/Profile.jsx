@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../src/app/components/Navbar';
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
+import ProfilSet from '../src/app/components/ProfilSet';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import * as antd from 'antd';
@@ -8,6 +9,7 @@ import * as antd from 'antd';
 const Profile = () => {
   const [loadingDonations, setLoadingDonations] = useState(true);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
+
   const [cookies] = useCookies(null);
   const [donation, setDonations] = useState([]);
   const [blog, setBlogs] = useState([]);
@@ -89,6 +91,44 @@ const {Meta}=antd.Card
   return (
     <div>
       <Navbar />
+     
+{page=="profile"?(
+  <div>
+  <h1 className='text-center'>Profile</h1>
+  <ProfilSet/>
+  <button onClick={()=>setpage("blogs")}>view blogs</button>
+  <button onClick={()=>setpage("donations")}>view donations</button>
+  </div>)
+  :page=="donations"?(<div>
+    <button onClick={()=>setpage("profile")}>back</button>
+    {filereddonations.map((donation, key) => (
+      <div key={key}>
+        <h2>{donation.amount}</h2>
+        <h3>{donation.holdername}</h3>
+        <button onClick={() => DeleteDonation(donation._id)}>Cancel Donation</button>
+      </div>
+
+    ))}
+    </div>
+  ):page=="blogs"?(
+    <div>
+    <button onClick={()=>setpage("profile")}>back</button>
+
+    {filteredblogs.map((blog, key) => (
+      <div key={key}>
+        <h2>{blog.title}</h2>
+        <h3>{blog.content}</h3>
+        <button onClick={() => deleteBlog(blog._id)}>delete blog</button>
+      </div>
+
+    ))}
+    </div>
+    
+  ):null
+}
+     
+    
+
       {page === "profile" ? (
         <div>
           <h1 className='text-center'>Profile</h1>
