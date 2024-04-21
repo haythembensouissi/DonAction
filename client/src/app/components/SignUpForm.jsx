@@ -7,6 +7,8 @@ import { Image, Transformation } from 'cloudinary-react';
 import './styles.css'
 import PasswordStrengthMeter from './ProgressBar';
 import {CldUploadWidget} from "next-cloudinary"
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 const SignUpForm = () => {
   const cloudname="dheoor1qw"
   const[error,setError]=useState(null)
@@ -88,7 +90,7 @@ const SignUpForm = () => {
     } else {
       console.error('Upload failed');
     }
-     
+     const image=cookies.image
        const response=await fetch("http://localhost:5000/api/users/register",{
         method:"POST",
         body:JSON.stringify({firstname,lastname,email,password,phonenumber,image}),
@@ -99,7 +101,7 @@ const SignUpForm = () => {
       console.log(data)
       setCookie("token",data.token)
       setCookie("email",data.results.email)
-      
+      setCookie("username",data.results.firstname)
     }
      
    
@@ -128,9 +130,9 @@ const SignUpForm = () => {
     }
   };
   return (
-    <div className="form-container sign-in" style={{marginTop:"31%"}}>
+    <div className="form-container sign-in" style={{marginTop:"35%"}}>
     
-      <form>
+      <form style={{position:"absolute"}}>
         <h1>Create Account</h1>
         <span>or use your email for registration</span>
      
@@ -141,7 +143,11 @@ const SignUpForm = () => {
         <input onChange={(e)=>setpassword(e.target.value)} value={password} type="password" placeholder="Password" />
         <input  onChange={(e)=>setconfirmpassword(e.target.value) } value={confirmpassword} type="password" placeholder="Confirm Password" />
         <input type='file' onChange={(e)=>setfile(e.target.files[0])} placeholder='your file here'/>
-       
+        <Box sx={{ width: calculateProgress(password) }}>
+  <LinearProgress  color={getPasswordStrength(password)=="Weak"?"error":getPasswordStrength(password)=="Medium"?"secondary":getPasswordStrength(password)=="Strong"?"success":"inherit"}/>
+</Box>
+
+      
 
         <PasswordStrengthMeter password={password}/>
   
@@ -149,7 +155,7 @@ const SignUpForm = () => {
         {error&&<p >{error}</p>}
 
         </form>
-        <button style={{marginTop:"250px",marginLeft:"100px"}} className='signupbutton' onClick={(e)=>handlesubmit(e)} >Sign Up</button>
+        <button style={{marginTop:"290px",marginLeft:"100px"}} id='signupbutton' onClick={(e)=>handlesubmit(e)} >Sign Up</button>
     </div>
   );
 };

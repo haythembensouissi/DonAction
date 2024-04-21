@@ -47,7 +47,7 @@ UserModel.findOne({ email: email })
     const token = jwt.sign({ userid: user._id, firstname: user.firstname, email: user.email }, "secret", { expiresIn: "24hr" });
 
    
-     return res.json({ userid: user._id, firstname: user.firstname, email: user.email,image:user.image, token: token });
+     return res.json({ userid: user._id, firstname: user.firstname,phonenumber:user.phonenumber,email: user.email,image:user.image, token: token });
   } else {
     return res.status(401).json({ message: 'Invalid password' });
   }

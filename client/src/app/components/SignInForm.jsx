@@ -25,6 +25,7 @@ const SignInForm = () => {
         setCookie("username",data.firstname)
         setCookie("token", data.token);
         setCookie("email", data.email);
+        setCookie("image", data.image);
       } else {
         console.log("Sign-in failed:", data.message);
         seterror(data.message || "Failed to sign in");
@@ -55,7 +56,7 @@ const SignInForm = () => {
         <a href="#">Forget Your Password?</a>
         
         {error&&<p>{error}</p>}
-        <button onClick={(e)=>handleSubmit(e)}>Sign In</button>
+        <button id='signinbutton' onClick={(e)=>handleSubmit(e)}>Sign In</button>
         </form>
     </motion.div>
     
