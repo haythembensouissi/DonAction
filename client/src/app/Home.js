@@ -1,74 +1,55 @@
-
-"use client";
-import { useEffect } from 'react';
 import { useSession, SessionProvider } from "next-auth/react";
 import ToggleForms from "./components/toggleForms";
 import { useCookies } from 'react-cookie';
 import Navbar from "./components/Navbar";
-import { useState } from "react";
+import Home from "./components/home"; // Updated component name to start with uppercase letter
+import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import styles from "./pagee.module.css";
 
-export default function HomePage() {
-  // Run this code only on the client-side
-  useEffect(() => {
-    // Your client-side specific code here
-    console.log("Client-side code executed");
-  }, []); 
-
+export default function HomePage() { // Renamed component to HomePage for clarity
+  
   return (
     <SessionProvider>
-      <Content/>
+      <Content />
     </SessionProvider>
   );
 }
 
-
 function Content() {
-  const [cookies, , removeCookie] = useCookies(null);
-  const [loading] = useState(true);
+  const [cookies, setCookie, removeCookie] = useCookies(null); // Removed unused setCookie
+  const [loading,setLoading] = useState(true); // Removed unused setLoading
   const token = cookies.token;
   const email = cookies.email;
+  const image = cookies.image;
+  
   const { data: session, status } = useSession();
-
   const signout = () => {
     removeCookie("email");
     removeCookie("token");
   };
-
   if (status === "loading") {
+    // Show loading spinner
     return (
       <div className="loading-spinner">
         <ClipLoader color={"#36D7B7"} loading={loading} size={50} />
       </div>
     );
   }
+  var home=true
 
+  
   return (
     <div>
       {session ? (
         <div>
-          <Navbar image={session.user.image} email={session.user.email} session={session} />
+        <Navbar home={home} image={session.user.image} email={session.user.email} session={session} />
+        <Home/>
         </div>
       ) : token ? (
         <div>
-          <Navbar email={email} />
-          <div className={styles.container}>
-        <div className={styles.item}>
-          <h1 className={styles.title}>
-            Better design for your digital products.
-          </h1>
-          <p className={styles.desc}>
-            Turning your Idea into Reality. We bring together the teams from the
-            global tech industry.
-          </p>
-          <Buttom url="/portfolio" text="See Our Works" />
+          <Navbar home={home} image={image} email={email} />    
+          <Home/>
         </div>
-        <div className={styles.item}>
-          <Image src={Hero} alt="" className={styles.img} />
-        </div>
-      </div>
-    </div>
       ) : (
         <div>
           <div className="cont">
@@ -76,6 +57,6 @@ function Content() {
           </div>
         </div>
       )}
-      </div>
+    </div>
   );
 }

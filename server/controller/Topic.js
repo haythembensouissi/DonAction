@@ -1,5 +1,8 @@
 const mongoose=require("mongoose")
 const TopicModel=require("../models/Topic")
+const UpdateTotal=(req,res)=>{
+
+}
 const SendTopic=(req,res)=>{
     const {title,content,useremail}=req.body;
     try {
