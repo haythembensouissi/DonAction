@@ -56,8 +56,57 @@ UserModel.findOne({ email: email })
   console.log(err);
   return res.status(500).json({ message: 'Internal server error' });
 });
-  
-
-
 }
-module.exports={register,signin}
+const updateProfile = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const newEmail = req.body.email;
+    const password = req.body.password;
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPwd = bcrypt.hashSync(password, salt);
+
+    // Update the user profile
+    UserModel.findOneAndUpdate(
+      { email: email },
+      {
+        firstname: req.body.firstname,
+        email: newEmail,
+        lastname: req.body.lastname,
+        image: req.body.image,
+        password: hashedPwd
+      },
+      { new: true } // Return the updated document
+    )
+      .then(user => {
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Generate a new JWT token with updated user data
+        const token = jwt.sign(
+          { userid: user._id, firstname: user.firstname, email: user.email },
+          'secret',
+          { expiresIn: '24hr' }
+        );
+
+        // Return the updated user data and token
+        return res.json({
+          userid: user._id,
+          firstname: user.firstname,
+          phonenumber: user.phonenumber,
+          email: user.email,
+          image: user.image,
+          token: token
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        return res.status(500).json({ message: 'Internal server error' });
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports={register,signin,updateProfile}
