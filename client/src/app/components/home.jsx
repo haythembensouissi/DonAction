@@ -9,11 +9,10 @@ export default function Home() {
 
       <div className={styles.item}>
         <h1 className={styles.title}>
-          Palastine needs us, needs all muslims arround the world
+          Stand for Palestine,Stand for Humanity ! 
         </h1>
         <p className={styles.desc}>
-          Turning your Idea into Reality. We bring together the teams from the
-          global tech industry.
+          
         </p>
         <a href="/portfolio"><button className={styles.b} type="button">Get to know Palastine</button></a>
       </div>

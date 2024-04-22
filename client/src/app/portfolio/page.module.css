@@ -1,5 +1,6 @@
 .mainTitle {
     font-size: 100px;
+    text-align: center;
   }
   
   .container {
@@ -8,6 +9,7 @@
   
   .selectTitle {
     margin: 20px 0px;
+    text-align: center;
   }
   
   .items {
@@ -18,20 +20,20 @@
   .item {
     border: 5px solid #bbb;
     border-radius: 5px;
-    width: 300px;
+    width: 500px;
     height: 400px;
     position: relative;
     background-size: cover !important;
   }
   
   .item:nth-child(1) {
-    background: url("/2.jpg");
+    background: url("/1.jpg");
   }
   .item:nth-child(2) {
-    background: url("/websites.jpg");
+    background: url("/6.jpg");
   }
   .item:nth-child(3) {
-    background: url("/apps.jpg");
+    background: url("/7.jpg");
   }
   
   .title {
@@ -40,6 +42,7 @@
     bottom: 10px;
     font-size: 40px;
     font-weight: bold;
+    text-align: center;
   }
   
   .item:hover .title {
