@@ -23,36 +23,43 @@ const About = () => {
         <div className={styles.item}>
           <h1 className={styles.title}>Who Are We?</h1>
           <p className={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            quae dolor, optio voluptatibus magnam iure esse tempora beatae. A
-            suscipit eos. Animi quibusdam cum omnis officiis voluptatum quo ea
-            eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Ducimus quae dolor, optio voluptatibus magnam iure esse tempora
-            beatae, a suscipit eos. Animi quibusdam cum omnis officiis
+          Welcome to our donation platform dedicated to supporting 
+          the people of Palestine. As we witness the ongoing humanitarian challenges
+           faced by Palestinians, your generosity can make a significant difference
+            in providing essential aid and relief to those in need. With your support,
+             we aim to address urgent humanitarian needs, including access to clean water
+             , food security, healthcare, education, and shelter, while also advocating for
             <br />
             <br />
-            voluptatum quo ea eveniet? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ducimus quae dolor, optio voluptatibus magnam iure
-            esse tempora beatae, a suscipit eos. Animi quibusdam cum omnis
-            officiis voluptatum quo ea eveniet?
+            long-term sustainable solutions to the underlying causes
+             of poverty and hardship in Palestine. Together, we can make
+              a positive impact and help build hope for a brighter future for
+               all Palestinians. Join us in our mission to stand in solidarity wit
+               h the people of Palestine and make a meaningful difference in their l
+               ives. Every donation counts
+
           </p>
         </div>
         <div className={styles.item}>
           <h1 className={styles.title}>What We Do?</h1>
           <p className={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            quae dolor, optio voluptatibus magnam iure esse tempora beatae, a
-            suscipit eos. Animi quibusdam cum omnis officiis voluptatum quo ea
-            eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit. -
-            Creative Illustrations
+          Our site serves as a vital channel
+          for individuals around the world to contribute to humanitarian efforts aimed 
+          at alleviating the suffering and addressing the urgent needs of Palestinian communities
+          affected by conflict, displacement, and socio-economic challenges. Through our platform,
+          users can make secure and transparent donations that directly impact the lives of Palestinians,
+          providing essential aid such as food, shelter, medical assistance, education, and psychosocial 
+          support. Together, we can make a meaningful difference and stand in solidarity with the resilient people
+          of Palestine as they strive for dignity, justice, and a brighter future. Join us in extending compassion
+          and solidarity to those in need.
             <br />
-            <br /> - Dynamic Websites
+            <br /> - Donation 
             <br />
-            <br /> - Fast and Handy
+            <br /> - Blog
             <br />
-            <br /> - Mobile Apps
+            <br /> -News
           </p>
-          <Button url="/contact" text="Contact" />
+          <Button url="/Contact" text="Contact" />
         </div>
       </div>
     </div>

@@ -18,12 +18,15 @@
 
 .imgContainer{
   flex:1;
-  height: 500px;
+  height: 430px;
+  width: 430px;
   position: relative;
 }
 
 .img{
   object-fit: cover;
+  width: 700px;
+  height: 500px;
 }
 
 .content{
