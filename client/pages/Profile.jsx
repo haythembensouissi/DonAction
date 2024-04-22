@@ -3,7 +3,9 @@ import Navbar from '../src/app/components/Navbar';
 import { useCookies } from "react-cookie";
 import ProfilSet from '../src/app/components/ProfilSet';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import * as antd from 'antd';
+
 const Profile = () => {
   const [loadingDonations, setLoadingDonations] = useState(true);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
@@ -12,10 +14,12 @@ const Profile = () => {
   const [donation, setDonations] = useState([]);
   const [blog, setBlogs] = useState([]);
   const [page, setPage] = useState("profile");
-  const username = cookies.username;
-  const email = cookies.email;
-  const image =cookies.image
-
+  console.log(cookies.sessionemail)
+  const username = cookies.username
+  const email = cookies.email||cookies.sessionemail
+  const image=cookies.image
+  const sessionimage=cookies.sessionimage
+const {Meta}=antd.Card
   useEffect(() => {
     getDonations();
     getBlogs();
@@ -81,101 +85,64 @@ const Profile = () => {
     }
   };
 
-  const filteredDonations = donation.filter(donation => donation.holdername === username);
+  const filteredDonations = donation.filter(donation => donation.useremail === email);
   const filteredBlogs = blog.filter(blog => blog.useremail === email);
 
   return (
     <div>
       <Navbar />
-     
-{page=="profile"?(
-  <div>
-  <h1 className='text-center'>Profile</h1>
-  <ProfilSet/>
-  <button onClick={()=>setpage("blogs")}>view blogs</button>
-  <button onClick={()=>setpage("donations")}>view donations</button>
-  </div>)
-  :page=="donations"?(<div>
-    <button onClick={()=>setpage("profile")}>back</button>
-    {filereddonations.map((donation, key) => (
-      <div key={key}>
-        <h2>{donation.amount}</h2>
-        <h3>{donation.holdername}</h3>
-        <button onClick={() => DeleteDonation(donation._id)}>Cancel Donation</button>
-      </div>
-
-    ))}
-    </div>
-  ):page=="blogs"?(
-    <div>
-    <button onClick={()=>setpage("profile")}>back</button>
-
-    {filteredblogs.map((blog, key) => (
-      <div key={key}>
-        <h2>{blog.title}</h2>
-        <h3>{blog.content}</h3>
-        <button onClick={() => deleteBlog(blog._id)}>delete blog</button>
-      </div>
-
-    ))}
-    </div>
-    
-  ):null
-}
-     
-    
 
       {page === "profile" ? (
         <div>
-          <h1 className='text-center'>Profile</h1>
-          <button onClick={() => setPage("blogs")}>View Blogs</button>
-          <button onClick={() => setPage("donations")}>View Donations</button>
+        <ProfilSet image={image}/>
+          <antd.Button onClick={() => setPage("blogs")}>View Blogs</antd.Button>
+          <antd.Button onClick={() => setPage("donations")}>View Donations</antd.Button>
         </div>
       ) : page === "donations" ? (
         <div>
-          <button onClick={() => setPage("profile")}><ArrowBackIcon /></button>
+          <antd.Button onClick={() => setPage("profile")}><ArrowBackIcon /></antd.Button>
           {filteredDonations.map((donation, key) => (
             <div key={key}>
-            <Card className="max-w-[400px]">
-            <CardHeader className="flex gap-3">
-              <Image
-                alt="nextui logo"
-                height={40}
-                radius="sm"
-                src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-                width={40}
-              />
-              <div className="flex flex-col">
-                <p className="text-md">NextUI</p>
-                <p className="text-small text-default-500">nextui.org</p>
-              </div>
-            </CardHeader>
-            <Divider/>
-            <CardBody>
-              <p>Make beautiful websites regardless of your design experience.</p>
-            </CardBody>
-            <Divider/>
-            <CardFooter>
-              <Link
-                isExternal
-                showAnchorIcon
-                href="https://github.com/nextui-org/nextui"
+            
+              <antd.Card
+                style={{ width: 300, marginTop: 16 }}
+                loading={loadingDonations}
               >
-                Visit source code on GitHub.
-              </Link>
-            </CardFooter>
-          </Card>
-       
+              <Meta
+              avatar={<antd.Avatar src={image?image:sessionimage?sessionimage:null} />}
+              title={donation.holdername}
+              
+              description={donation.amount}
+              />
+             
+              </antd.Card>
+                <antd.Skeleton loading={loadingDonations} avatar active>
+                <antd.Button onClick={()=>DeleteDonation(donation._id)} danger type="primary">Cancel donation</antd.Button>
+                </antd.Skeleton>
+            
             </div>
           ))}
         </div>
       ) : page === "blogs" ? (
         <div>
-          <button onClick={() => setPage("profile")}><ArrowBackIcon/></button>
+          <antd.Button onClick={() => setPage("profile")}><ArrowBackIcon/></antd.Button>
           {filteredBlogs.map((blog, key) => (
             <div key={key}>
             
-            
+              <antd.Card
+                style={{ width: 300, marginTop: 16 }}
+                loading={loadingBlogs}
+              >
+              <Meta
+              avatar={<antd.Avatar src={image?image:sessionimage?sessionimage:null} />}
+              title={blog.title}
+              description={blog.content}
+              />
+             
+              </antd.Card>
+                <antd.Skeleton loading={loadingBlogs} avatar active>
+                <antd.Button onClick={()=>deleteBlog(blog._id)} danger type="primary">delete</antd.Button>
+                </antd.Skeleton>
             
             </div>
           ))}

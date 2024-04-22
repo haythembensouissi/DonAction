@@ -5,7 +5,8 @@ import '../src/app/components/Blog.css'
 import Navbar from '../src/app/components/Navbar'
 function Blogging() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
-const useremail=cookies.email
+  const useremail=cookies.email||cookies.sessionemail
+
 const [submitted, setSubmitted] = useState(false);
 const [title,settitle]=useState("")
 const [content,setcontent]=useState("")

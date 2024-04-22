@@ -6,7 +6,10 @@ import { useCookies } from "react-cookie";
 import { useRouter } from 'next/navigation';
 const DonationForm = ({page,setPage}) => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
-  const name = cookies.username;
+  console.log(cookies.sessionemail)
+  const name = cookies.username
+
+  const useremail=cookies.email||cookies.sessionemail
   const [submitted, setSubmitted] = useState(false);
   const [holdername, setholdername] = useState(name);
   const [cardnumber, setcardnumber] = useState("");
@@ -18,7 +21,7 @@ const router=useRouter()
     e.preventDefault();
    const response=await fetch("http://localhost:5000/api/donate",{
     method:"POST",
-    body:JSON.stringify({holdername,cardnumber,amount,expirydate,Cvv}),
+    body:JSON.stringify({holdername,cardnumber,amount,expirydate,Cvv,useremail}),
     headers:{"Content-Type":"application/json"}
    })
    const data=await response.json()
